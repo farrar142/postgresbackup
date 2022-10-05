@@ -1,0 +1,24 @@
+# redis-server.yml
+version: "3.7"
+services:
+    dbbackup:
+        build: .
+        container_name: dbbackup
+        volumes:
+            - ./main.py:/usr/src/app/main.py
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /sys/fs/cgroup:/sys/fs/cgroup:r
+            #백업파일
+            - ./backups:/root/backups
+        # command: python3 main.py
+        restart: unless-stopped
+        working_dir: /usr/src/app
+        privileged: true
+        network_mode: host
+        environment:
+            - POSTGRES_USER=runthe
+            - POSTGRES_PASSWORD=nothing
+            - POSTGRES_DB_NAME=runthe
+            - TZ=Asia/Seoul
+        ports:
+            - "5433:5432"
