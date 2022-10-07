@@ -15,7 +15,7 @@ services:
     privileged: true
     network_mode: host
     environment:
-      - POSTGRES_USER=runthe
+      - POSTGRES_USER=nothing
       - POSTGRES_PASSWORD=nothing
-      - POSTGRES_DB_NAME=runthe
+      - POSTGRES_DB_NAME=nothing
       - TZ=Asia/Seoul
