@@ -19,6 +19,7 @@ DB_USER=os.getenv('DB_USER',"user")
 DB_PASSWORD=os.getenv("DB_PASSWORD",'password')
 DB_PORT=os.getenv("DB_PORT","5432")
 DB_NAME=os.getenv("DB_NAME",'dbname')
+TIME=os.getenv("TIME",'03:00')
 
 class File:
     def __init__(self, dir: str, file: str):
@@ -92,7 +93,7 @@ def backup():
 
 if __name__=="__main__":
     # schedule.every(5).seconds.do(backup)
-    schedule.every().day.at("13:00").do(backup)
+    schedule.every().day.at(TIME).do(backup)
     while True:
         schedule.run_pending()
         time.sleep(1)
